@@ -21,7 +21,7 @@ public class ProcessingDataWebServiceImpl implements ProcessingDataWebService {
 
         List<String> lines = Files.readAllLines(Paths.get(path), StandardCharsets.UTF_8);
 
-        Log log = null;
+        Log log = new Log();
 
         Pattern pattern = Pattern.compile("(SdlSig|Stopping)");
 
@@ -37,8 +37,8 @@ public class ProcessingDataWebServiceImpl implements ProcessingDataWebService {
                 }
             }
         }
-
-        log = new Log(stoppings, sdlSigs);
+        log.setSdlSigs(sdlSigs);
+        log.setStoppings(stoppings);
 
         return log;
     }
